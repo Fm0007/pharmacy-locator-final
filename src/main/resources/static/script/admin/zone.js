@@ -94,7 +94,7 @@
 										}
 									});
 									$("#main-content").load(
-											"./page/zone.html");
+											"./page/admin/zone.html");
 								}
 							});
 
@@ -214,7 +214,7 @@
 											}
 										});
 										$("#main-content").load(
-												"./page/zone.html");
+												"./page/admin/zone.html");
 									}
 								});
 							});

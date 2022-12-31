@@ -66,7 +66,7 @@ $(document)
 										}
 									});
 									$("#main-content").load(
-											"./page/garde.html");
+											"./page/admin/garde.html");
 								}
 							});
 
@@ -178,7 +178,7 @@ $(document)
 											}
 										});
 										$("#main-content").load(
-												"./page/garde.html");
+												"./page/admin/garde.html");
 									}
 								});
 							});

@@ -44,7 +44,7 @@
 
 </head>
 <body>
-	<div sec:authorize="isAuthenticated()">
+<div sec:authorize="isAuthenticated()">
         <div sec:authorize="hasRole('ROLE_ADMIN')">
             <div class="page-wrapper chiller-theme toggled">
                 <a id="show-sidebar" class="btn btn-sm btn-dark" href="#"> <i
@@ -75,14 +75,16 @@
                         <!-- sidebar-search  -->
                         <div class="sidebar-menu">
                             <ul>
-                                <li class="header-menu"><span>Gestion</span></li>
+                          
         
                                 <li><a href="./index.html" onclick="show('statistiques')"><i
                                         class="zmdi zmdi-hc-1x zmdi-group-work"></i>Statistiques</a></li>
                                         
                                 <li><a href="./index.html" onclick="show('pharmacy')"><i
                                         class="zmdi zmdi-hc-1x zmdi-group-work"></i>Pharmacies</a></li>
-                                        
+                                <li><a href="./index.html" onclick="show('validation')"><i
+                                            class="zmdi zmdi-hc-1x zmdi-group-work"></i>Validation</a></li>
+                                                    
                                 <li><a href="./index.html" onclick="show('zone')"><i
                                         class="zmdi zmdi-hc-1x zmdi-group-work"></i>Zones</a></li>
                                         
@@ -223,6 +225,11 @@
             <script src="script/index.js"></script>
             <script src="js/main.js"></script>
           </div>
+</div>
+<div >
+    <div class="mb-3">
+        <a class="link-primary" th:href="@{/login}">Login</a>
+    </div>
 </div>
 
 </body>

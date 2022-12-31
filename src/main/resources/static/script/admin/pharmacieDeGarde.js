@@ -188,7 +188,7 @@ $(document)
 										}
 									});
 									$("#main-content").load(
-											"./page/pharmacieDeGarde.html");
+											"./page/admin/pharmacieDeGarde.html");
 								}
 							});
 
@@ -318,7 +318,7 @@ $(document)
 											}
 										});
 										$("#main-content").load(
-												"./page/pharmacieDeGarde.html");
+												"./page/admin/pharmacieDeGarde.html");
 									}
 								});
 							});

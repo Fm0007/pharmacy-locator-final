@@ -28,7 +28,7 @@ public class UserController {
 	public Pharmacie findofUser(@PathVariable(required = true) String email) {
 		User tmp = repository.findByEmail(email);
 		if(tmp.getPharmacie()==null){
-			Pharmacie ph = new Pharmacie("Nom", "adresse" , null, null, null);
+			Pharmacie ph = new Pharmacie("NomAdefinir", "adresseAdefinir", 30.00, -8.00, null , "non valide");
 			ph.setEtat("non valide");
 			ph.setUser(tmp);
 			phrep.save(ph);

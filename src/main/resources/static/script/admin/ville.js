@@ -69,7 +69,7 @@
 										}
 									});
 									$("#main-content").load(
-											"./page/ville.html");
+											"./page/admin/ville.html");
 								}
 							});
 
@@ -182,7 +182,7 @@
 											}
 										});
 										$("#main-content").load(
-												"./page/ville.html");
+												"./page/admin/ville.html");
 									}
 								});
 							});

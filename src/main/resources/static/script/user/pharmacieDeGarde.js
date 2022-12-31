@@ -7,19 +7,8 @@ $(document)
 
 				function() {
 					var mail = $("#user-name").text();
-					var idd ;
-					$.ajax({
-						url:'/pharmacies/'+mail,
-						type:'GET',
-						success : function(data) {
-							idd = data.id
-													},
-						error : function(jqXHR, textStatus,
-										errorThrown) {
-										console.log(textStatus);
-											}
-											
-					});	
+					var idd = $("#ident").text();
+					
 					$.ajax({
 						url:'/gardes/all',
 						type:'GET',
@@ -77,13 +66,13 @@ $(document)
 										dateDebut : dateDebut.val(),
 										dateFin : dateFin.val(),
 										pharmacie : {
-											id: pharmacy.val()
+											id: idd
 										},
 										garde : {
 											idGarde : garde.val()
 										},
 										pharmacieDeGardePK : {
-											pharmaciePK: pharmacy.val(),
+											pharmaciePK: idd,
 											gardePK: garde.val(),
 											dateDebut : dateDebut.val()
 										  }
@@ -108,7 +97,7 @@ $(document)
 										}
 									});
 									$("#main-content").load(
-											"./page/pharmacieDeGarde.html");
+											"./page/user/statistiques.html");
 								}
 							});
 
@@ -145,7 +134,7 @@ $(document)
 															$
 																	.ajax({
 																		url : 'pharmacieDeGardes/delete/'
-																				+ id,
+																				+ idd,
 																		data : {},
 																		type : 'DELETE',
 																		async : false,
@@ -205,13 +194,13 @@ $(document)
 										dateDebut : dateDebut.val(),
 										dateFin : dateFin.val(),
 										pharmacie : {
-											id: pharmacy.val()
+											id: idd
 										},
 										garde : {
 											idGarde : garde.val()
 										},
 										pharmacieDeGardePK : {
-											pharmaciePK: pharmacy.val(),
+											pharmaciePK: idd,
 											gardePK: garde.val(),
 											dateDebut : dateDebut.val()
 										  }

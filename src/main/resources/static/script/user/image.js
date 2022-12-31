@@ -9,7 +9,30 @@
 					var option = '<img class="center" src="'+url+'" ></img>';
 					$('#img').append(option);
 					
-					
+					$("#file-upload-form").on("submit", function (e) {
+
+						// cancel the default behavior
+						e.preventDefault();
+				
+						// use $.ajax() to upload file
+						$.ajax({
+							url: "/upload/image/"+idd,
+							type: "POST",
+							data: new FormData(this),
+							enctype: 'multipart/form-data',
+							processData: false,
+							contentType: false,
+							cache: false,
+							success: function (res) {
+								console.log(res);
+							},
+							error: function (err) {
+								console.error(err);
+							}
+							
+						});
+						location.reload();
+					});
 					
 					
 					
@@ -17,7 +40,7 @@
 							function() {
 								
 								
-								var lat = $("#lat");
+								var image = $("#image");
 								var log = $("#log");
 								
 								

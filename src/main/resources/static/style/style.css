@@ -8,6 +8,10 @@
     background-color: transparent;
     cursor: pointer;
 }
+.phimg {
+    margin-top: -20px;
+    margin-bottom: 20px;
+}
 .center {
     display: block;
     margin-left: auto;

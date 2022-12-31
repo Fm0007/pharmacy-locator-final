@@ -56,6 +56,12 @@ function show(page) {
 		$("#main-content").load("page/admin/garde.html");
 		event.preventDefault();
 	}
+	if (page == "validation") {
+		$('a').removeClass('active');
+		$('a:contains(Validation)').addClass('active');
+		$("#main-content").load("page/admin/validation.html");
+		event.preventDefault();
+	}
 }
 $('a').removeClass('active');
 $('a:contains(Statistiques)').addClass('active');

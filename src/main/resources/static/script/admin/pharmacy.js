@@ -106,6 +106,7 @@
 									var p = {
 										
 										nom : nom.val(),
+										etat : "valide",
 										adresse : adresse.val(),
 										lat : lat.val(),
 										log : log.val(),
@@ -132,7 +133,7 @@
 										}
 									});
 									$("#main-content").load(
-											"./page/pharmacy.html");
+											"./page/admin/pharmacy.html");
 								}
 							});
 

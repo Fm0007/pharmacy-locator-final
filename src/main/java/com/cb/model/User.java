@@ -43,6 +43,5 @@ public class User {
         this.email = email;
         this.password = password;
         this.roles = roles;
-        this.pharmacie = new Pharmacie("Nom a definir", "adresse a definir", 30.00, -8.00, null , "non valide");
     }
 }

@@ -2,7 +2,9 @@ package com.cb.controller;
 
 import java.io.Console;
 import java.util.Base64;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -32,7 +34,7 @@ public class PharmacieController {
 	private UserRepository usrepository;
 
 	@PostMapping("/save")
-	public void save(@RequestBody Pharmacie Pharmacie , @RequestParam("image")MultipartFile image ) {
+	public void save(@RequestBody Pharmacie Pharmacie) {
 		repository.save(Pharmacie);
 	}
 
@@ -43,9 +45,27 @@ public class PharmacieController {
 		repository.delete(s);
 	}
 
+	@GetMapping("/nv")
+	public Set<Pharmacie> findAllt() {
+		List<Pharmacie> tmp = repository.findAll();
+		Set<Pharmacie> result = new HashSet<Pharmacie>();
+		for(Pharmacie p : tmp){
+			if(p.getEtat().equalsIgnoreCase("non valide") ){
+				result.add(p);
+			}
+		}
+		return result;
+	}
 	@GetMapping("/all")
-	public List<Pharmacie> findAll() {
-		return repository.findAll();
+	public Set<Pharmacie> findAll() {
+		List<Pharmacie> tmp = repository.findAll();
+		Set<Pharmacie> result = new HashSet<Pharmacie>();
+		for(Pharmacie p : tmp){
+			if(p.getEtat().equalsIgnoreCase("valide") ){
+				result.add(p);
+			}
+		}
+		return result;
 	}
 
 	@GetMapping("/{email}")

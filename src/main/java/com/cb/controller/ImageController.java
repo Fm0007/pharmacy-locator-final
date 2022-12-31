@@ -9,11 +9,13 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.cb.model.Image;
+import com.cb.model.Pharmacie;
 import com.cb.repository.ImageRepository;
 import com.cb.repository.PharmacieRepository;
 import com.cb.util.ImageUtility;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -29,12 +31,13 @@ public class ImageController {
     @PostMapping("/upload/image/{id}")
     public ResponseEntity<ImageUploadResponse> uplaodImage(@PathVariable("id") String id,@RequestParam("image") MultipartFile file)
             throws IOException {
-                
-        imageRepository.save(Image.builder()
-                .name(file.getOriginalFilename())
-                .type(file.getContentType())
-                .pharmacie(repository.getById(Integer.parseInt(id)))
-                .image(ImageUtility.compressImage(file.getBytes())).build());
+        Pharmacie ph = repository.getById(Integer.parseInt(id));
+        Image im = Image.builder()
+        .name(file.getOriginalFilename())
+        .type(file.getContentType())
+        .pharmacie(ph)
+        .image(ImageUtility.compressImage(file.getBytes())).build();
+        imageRepository.save(im);
         return ResponseEntity.status(HttpStatus.OK)
                 .body(new ImageUploadResponse("Image uploaded successfully: " +
                         file.getOriginalFilename()));
@@ -63,8 +66,14 @@ public class ImageController {
     }
     @GetMapping(path = {"/get/imagep/{id}"})
     public ResponseEntity<byte[]> getImagee(@PathVariable("id") String id) throws IOException {
+        List<Image> im = imageRepository.findAll();
+        Image r = new Image();
+        for(Image i : im){
+          if(i.getPharmacie()==repository.getById(Integer.parseInt(id))) 
+           r = i;       
+        }
 
-         final Optional<Image> dbImage = Optional.of((repository.getById(Integer.parseInt(id))).getImage());
+         final Optional<Image> dbImage = Optional.of(r);
 
         return ResponseEntity
                 .ok()
