@@ -5,13 +5,16 @@ import java.util.Set;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Pharmacie { 
@@ -23,11 +26,21 @@ public class Pharmacie {
 	private String adresse;
 	private Double lat;
 	private Double log;
+	private String  etat;
+
 	@ManyToOne
 	private Zone zone;
 	@JsonIgnore
+	@OneToOne
+	private User user;
+	@JsonIgnore
+	@OneToOne
+	private Image image;
+	@JsonIgnore
 	@OneToMany(mappedBy = "pharmacie",fetch = FetchType.EAGER)
 	private Set<PharmacieDeGarde> gardes ;
+	
+
 
 	public Pharmacie(String nom, String adresse, Double lat, Double log, Zone zone) {
 		super();
@@ -37,6 +50,16 @@ public class Pharmacie {
 		this.log = log;
 		this.zone = zone;
 	}
+	public Pharmacie(String nom, String adresse, Double lat, Double log, Zone zone, String etat) {
+		super();
+		this.nom = nom;
+		this.adresse = adresse;
+		this.lat = lat;
+		this.log = log;
+		this.zone = zone;
+		this.etat = etat;
+	}
+
 
 	public int getId() {
 		return id;
@@ -44,6 +67,13 @@ public class Pharmacie {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public Zone getZone() {
@@ -56,6 +86,19 @@ public class Pharmacie {
 
 	public String getNom() {
 		return nom;
+	}
+
+	public void setEtat(String etat) {
+		this.etat = etat;
+	}
+	public String getEtat() {
+		return etat;
+	}
+	public void setImage(Image image) {
+		this.image = image;
+	}
+	public Image getImage() {
+		return image;
 	}
 
 	public void setNom(String nom) {

@@ -23,10 +23,11 @@ public class SpringSecurity {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
+                .antMatchers("/upload/**").permitAll()
                 .antMatchers("/registration/**").permitAll()
                 .antMatchers("/login/**").permitAll()
-                .antMatchers("/user/**").hasAnyRole("USER", "ADMIN")
-                .antMatchers("/admin/**").hasAnyRole("ADMIN")
+                .antMatchers("/admin/**").hasAnyRole("USER", "ADMIN")
+                .antMatchers("**/delete/**").hasAnyRole("ADMIN")
                 .and()
                 .formLogin(
                         form -> form

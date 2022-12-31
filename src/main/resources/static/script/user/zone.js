@@ -1,30 +1,10 @@
-
-$(document)
+/**
+ * 
+ */
+ $(document)
 		.ready(
-
-			
-			
-
 				function() {
-
-					$.ajax({
-						url:'/gardes/all',
-						type:'GET',
-						success : function(data) {	
-						var option = '';
-						data.forEach(e=>{
-								option += '<option value ='+e.idGarde+'>'+e.type+'</option>';
-										});
-												
-						$('#garde').append(option);
-													},
-						error : function(jqXHR, textStatus,
-										errorThrown) {
-										console.log(textStatus);
-											}
-											
-					});	
-
+					
 					$.ajax({
 						url:'/villes/all',
 						type:'GET',
@@ -43,94 +23,25 @@ $(document)
 											
 					});	
 
-					$("#ville").change(function () {
-						var ville = $("#ville");
-						if ($('#ville').val() != 0 ) {
-							$.ajax({
-								url:'villes/zones/'+ville.val(),
-								type:'GET',
-								success : function(data) {	
-								var option = '<option value="0">Choisir une zone</option>';
-								data.forEach(e=>{
-										option += '<option value ='+e.id+'>'+e.nom+'</option>';
-												});
-														
-								$('#zone').html(option);
-															},
-								error : function(jqXHR, textStatus,
-												errorThrown) {
-												console.log(textStatus);
-													}
-													
-							});
-						}
-						else{
-							var option = '<option value="0">Choisir une zone</option>';
-							$('#zone').html(option);
-
-						}
-					});
-					
-
-					$("#zone").change(function () {
-						var zone = $("#zone");
-						if ($('#zone').val() != 0 ) {
-							$.ajax({
-								url:'/zones/pharmacies/'+zone.val(),
-								type:'GET',
-								success : function(data) {	
-								var option = '<option value="0">Choisir une pharmacies</option>';
-								data.forEach(e=>{
-										option += '<option value ='+e.id+'>'+e.nom+'</option>';
-												});
-														
-								$('#pharmacy').html(option);
-															},
-								error : function(jqXHR, textStatus,
-												errorThrown) {
-												console.log(textStatus);
-													}
-													
-							});
-						}
-						else{
-							var option = '<option value="0">Choisir une pharmacie</option>';
-							$('#pharmacy').html(option);
-
-						}
-					});
-
-
-
-
-
-
-
-
-
-					
-
-					table = $('#tpharmacieDeGarde')
+					table = $('#tzone')
 							.DataTable({
 										ajax : {
-											url : "pharmacieDeGardes/all",
+											url : "zones/all",
 											dataSrc : ''
 										},
 										columns : [
 												{
-												data : "pharmacie.nom"
-												},
-												{
-													data : "pharmacieDeGardePK.dateDebut"
-												},
-												{
-													data : "dateFin"
+													data : "id"
 												},
 												
-												
 												{
-													data : "garde.type"
+													data : "nom"
 												},
+												{
+													data : "ville.nom"
+												},
+												
+											
 												{
 													"render" : function() {
 														return '<button type="button" class="btn btn-outline-danger supprimer">Supprimer</button>';
@@ -150,31 +61,25 @@ $(document)
 
 					$('#btn').click(
 							function() {
-								var dateDebut = $("#dateDebut");
-								var dateFin = $("#dateFin");
-								var pharmacy = $("#pharmacy");
-								var garde = $("#garde");
+								
+								var nom = $("#nom");
+								var ville = $("#ville");
+								
+								
 								if ($('#btn').text() == 'Ajouter') {
+									console.log(ville.val())
 									var p = {
-										dateDebut : dateDebut.val(),
-										dateFin : dateFin.val(),
-										pharmacie : {
-											id: pharmacy.val()
-										},
-										garde : {
-											idGarde : garde.val()
-										},
-										pharmacieDeGardePK : {
-											pharmaciePK: pharmacy.val(),
-											gardePK: garde.val(),
-											dateDebut : dateDebut.val()
-										  }
+										
+										nom : nom.val(),
 										
 										
+										ville : {
+											id : ville.val()
+										}
 									};
 
 									$.ajax({
-										url : 'pharmacieDeGardes/save',
+										url : 'zones/save',
 										contentType : "application/json",
 										dataType : "json",
 										data : JSON.stringify(p),
@@ -190,7 +95,7 @@ $(document)
 										}
 									});
 									$("#main-content").load(
-											"./page/pharmacieDeGarde.html");
+											"./page/zone.html");
 								}
 							});
 
@@ -202,13 +107,12 @@ $(document)
 
 										var id = $(this).closest('tr').find(
 												'td').eq(0).text();
-										
 										var oldLing = $(this).closest('tr')
 												.clone();
 										var newLigne = '<tr style="position: relative;" class="bg-light" ><th scope="row">'
 												+ id
 												+ '</th><td colspan="4" style="height: 100%;">';
-										newLigne += '<h4 class="d-inline-flex">Voulez vous vraiment supprimer cette pharmacie de garde ? </h4>';
+										newLigne += '<h4 class="d-inline-flex">Voulez vous vraiment supprimer cette zone ? </h4>';
 										newLigne += '<button type="button" class="btn btn-outline-primary btn-sm confirmer" style="margin-left: 25px;">Oui</button>';
 										newLigne += '<button type="button" class="btn btn-outline-danger btn-sm annuler" style="margin-left: 25px;">Non</button></td></tr>';
 
@@ -226,7 +130,7 @@ $(document)
 															e.preventDefault();
 															$
 																	.ajax({
-																		url : 'pharmacieDeGardes/delete/'
+																		url : 'zones/delete/'
 																				+ id,
 																		data : {},
 																		type : 'DELETE',
@@ -264,44 +168,35 @@ $(document)
 							'.modifier',
 							function() {
 								var btn = $('#btn');
-								var nom = $(this).closest('tr').find('td').eq(0)
+								var id = $(this).closest('tr').find('td').eq(0)
 										.text();
-								;
-								var dateDebut = $(this).closest('tr').find('td').eq(
-										1).text();
-								var dateFin = $(this).closest('tr').find('td')
-										.eq(2).text();
-								var garde = $(this).closest('tr').find('td').eq(
-										3).text();
+								
+								var ville = $(this).closest('tr').find('td').eq(2).text();
+								var nom = $(this).closest('tr').find('td')
+										.eq(1).text();
+								
 								btn.text('Modifier');
-								$("#dateDebut").val(dateDebut);
-								$("#dateFin").val(dateFin);
-								$("#pharmacy option").filter(function(index) { return $(this).text() === nom; }).attr('selected', 'selected');
-
-								$("#garde option").filter(function(index) { return $(this).text() === garde; }).attr('selected', 'selected');
-
-							
+								
+								$("#nom").val(nom);
+								$("#id").val(id);
+								$("#ville option").filter(function(index) { return $(this).text() === ville; }).attr('selected', 'selected');
+								
+								
+								
 								btn.click(function(e) {
 									e.preventDefault();
 									var p = {
-										dateDebut : dateDebut.val(),
-										dateFin : dateFin.val(),
-										pharmacie : {
-											id: pharmacy.val()
-										},
-										garde : {
-											idGarde : garde.val()
-										},
-										pharmacieDeGardePK : {
-											pharmaciePK: pharmacy.val(),
-											gardePK: garde.val(),
-											dateDebut : dateDebut.val()
-										  }
+										id : $("#id").val(),
+										nom : $("#nom").val(),
+										ville : {
+											id : $("#ville").val()
+										}
+										
 										
 									};
 									if ($('#btn').text() == 'Modifier') {
 										$.ajax({
-											url : 'pharmacieDeGardes/update/',
+											url : 'zones/update/'+id,
 											contentType : "application/json",
 											dataType : "json",
 											data : JSON.stringify(p),
@@ -310,8 +205,8 @@ $(document)
 											success : function(data,
 													textStatus, jqXHR) {
 												table.ajax.reload();
-												$("#dateDebut").val('');
-												$("#dateFin").val('');
+												
+												$("#nom").val('');
 												btn.text('Ajouter');
 											},
 											error : function(jqXHR, textStatus,
@@ -320,7 +215,7 @@ $(document)
 											}
 										});
 										$("#main-content").load(
-												"./page/pharmacieDeGarde.html");
+												"./page/zone.html");
 									}
 								});
 							});

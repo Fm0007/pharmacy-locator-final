@@ -8,7 +8,12 @@
     background-color: transparent;
     cursor: pointer;
 }
-
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
 .switch.switch-3d .switch-input {
     position: absolute;
     top: 0;

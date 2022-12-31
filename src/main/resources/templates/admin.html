@@ -112,7 +112,7 @@
                 <!-- page-content" -->
             </div>
             <!-- page-wrapper -->
-            <script src="script/admin/redirect.js"></script>
+            <script src="script/redirect.js"></script>
             <script src="vendor/slick/slick.min.js">
                 
             </script>
@@ -153,7 +153,7 @@
                                     alt="User picture">
                             </div>
                             <div class="user-info">
-                                <span class="user-name" >   <span id="user-name" sec:authentication="principal.username"/> 
+                                <span class="user-name"> <strong>  <span sec:authentication="principal.username"/> </strong>
                                 </span> <span class="user-role"><span sec:authentication="principal.authorities"/></span> <span class="user-status">
                                     <i class="fa fa-circle"></i> <span>Online</span>
                                 </span>
@@ -167,24 +167,18 @@
                                 <li class="header-menu"><span>Gestion</span></li>
         
                                 <li><a href="./index.html" onclick="show('statistiques')"><i
-                                        class="zmdi zmdi-hc-1x zmdi-group-work"></i>My pharmacy</a></li>
-								<li class="header-menu"><span>Gardes</span></li>        
-    
+                                        class="zmdi zmdi-hc-1x zmdi-group-work"></i>Statistiques</a></li>
+                                        
+                                <li><a href="./index.html" onclick="show('pharmacy')"><i
+                                        class="zmdi zmdi-hc-1x zmdi-group-work"></i>Pharmacies</a></li>
+                                        
+                                
                                 <li><a href="./index.html" onclick="show('pharmacieDeGarde')"><i
                                         class="zmdi zmdi-hc-1x zmdi-group-work"></i>Pharmacie de garde</a></li>
-								<li class="header-menu"><span>Modification</span></li> 	
-								<li><a href="./index.html" onclick="show('pharmacy')"><i
-											class="zmdi zmdi-hc-1x zmdi-group-work"></i>Modification</a></li>
-								<li><a href="./index.html" onclick="show('map')"><i
-								class="zmdi zmdi-hc-1x zmdi-group-work"></i>Emplacements</a></li>
-								<li><a href="./index.html" onclick="show('image')"><i
-									class="zmdi zmdi-hc-1x zmdi-group-work"></i>Image</a></li>
-							
-							</ul>
+                                
+        
+                            </ul>
                         </div>
-						<h6 id="ulat"></h6>
-						<h6 id="ulog"></h6>
-						<h6 id="ident"></h6>
                         <!-- sidebar-menu  -->
                     </div>
                     <!-- sidebar-content  -->
@@ -201,7 +195,7 @@
                 <!-- page-content" -->
             </div>
             <!-- page-wrapper -->
-            <script src="script/user/redirect.js"></script>
+            <script src="script/redirect.js"></script>
             <script src="vendor/slick/slick.min.js">
                 
             </script>

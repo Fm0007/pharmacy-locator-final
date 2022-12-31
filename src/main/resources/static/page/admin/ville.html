@@ -1,4 +1,4 @@
-<script src="script/produit.js" type="text/javascript"></script>
+<script src="script/admin/ville.js" type="text/javascript"></script>
 
 <div class="container-fluid">
     <div class="modal fade" id="error" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -12,66 +12,40 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>Impossible de supprimer ce produit</p>
+                    <p>Impossible de supprimer cette ville</p>
                 </div>
             </div>
         </div>
     </div>
     <div class="card bg-white">
         <div class="card-header card-color">
-            <p class="h2 text-center text-uppercase font-weight-bold pt-2">Gestion des produits</p>
+            <p class="h2 text-center text-uppercase font-weight-bold pt-2">Gestion des villes</p>
         </div>
         <div class="card-body container-fluid">
             <div class="row">
-                <div class="col-sm-6 mb-2">
-                    <label for="code">Code : </label>
-                    <input class="" type="text" id="id" hidden>
-                    <input class="form-control" type="text" id="code" required>
-
-                </div>
+                
                 <div class="col-sm-6 mb-2">
                     <label for="nom">Nom : </label>
                     <input class="form-control" type="text" id="nom" required>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-6 mb-2">
-                    <label for="prix">Prix : </label>
-                    <input class="" type="text" id="id" hidden>
-                    <input class="form-control" type="text" id="prix" required>
-
-                </div>
-                <div class="col-sm-6 mb-2">
-                    <label for="date">Date Achat : </label>
-                    <input class="form-control" type="date" id="date" required>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6 mb-2">
-                    <label for="marque">Marque : </label>
-                     
-                     <select  class="form-control"  id="marque" name="marque">
-                     	<option value="0">choisir une option</option>
-                     	
-                     </select>
-             </div>
+            
+            
              <div class="row">
                     <div class="col">
                         <button type="button" class="btn btn-outline-success mt-3 mb-3" id="btn">Ajouter</button>
                     </div>
                 
-             </div>
+             
               
             </div>
             <div class="row table-responsive m-auto rounded">
-                <table id="tproduit" class="table table-hover w-100">
+                <table id="tville" class="table table-hover w-100">
                     <thead>
                         <tr class="text-uppercase bg-light  w-100">
                             <th scope="col">Id</th>
-                            <th scope="col">Code</th>
+                            
                             <th scope="col">Nom</th>
-                            <th scope="col">DateAchat</th>
-                            <th scope="col">Prix</th>
                             <th scope="col">Supprimer</th>
                             <th scope="col">Modifier</th>
                         </tr>
