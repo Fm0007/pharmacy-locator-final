@@ -12,6 +12,7 @@ import ma.locator.model.User;
 import ma.locator.repository.PharmacieRepository;
 import ma.locator.repository.RoleRepository;
 import ma.locator.repository.UserRepository;
+import ma.locator.repository.ZoneRepository;
 import ma.locator.util.TbConstants;
 
 import java.util.Arrays;
@@ -27,6 +28,8 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private ZoneRepository zrepository;
 
 
     @Autowired
@@ -41,7 +44,7 @@ public class UserServiceImpl implements UserService {
 
         User user = new User(userDto.getName(), userDto.getEmail(), passwordEncoder.encode(userDto.getPassword()),
                 Arrays.asList(role));
-        Pharmacie ph = new Pharmacie("nom a définir", "adresse a définir", 33.00, -8.00, null, "non valide");
+        Pharmacie ph = new Pharmacie("nom a définir", "adresse a définir", 33.10, -8.10, zrepository.findById(4), "non valide");
         
         repository.save(ph);
         user.setPharmacie(ph);

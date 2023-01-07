@@ -19,7 +19,7 @@
 								option += '<option value ='+e.id+'>'+e.nom+'</option>';
 										});
 												
-						$('#ville').append(option);
+						$('#ville').html(option);
 						$.ajax({
 							url:'/zones/all',
 							type:'GET',
@@ -41,41 +41,41 @@
 									$("#lat").val(data.lat),
 									$("#log").val(data.log),
 
-L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-  attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
+									L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+									attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
+									}).addTo(map);
 
-var searchControl = L.esri.Geocoding.geosearch({
-  position: "topright",
-  placeholder: "Enter an address or place e.g. 1 York St",
-  useMapBounds: false,
-  providers: [
-    L.esri.Geocoding.arcgisOnlineProvider({
-      apikey: apiKey,
-      nearby: {
-        lat: data.lat,
-        lng: data.log
-      }
-    })
-  ]
-}).addTo(map);
-var curLocation = [data.lat, data.log];
-var results = L.layerGroup().addTo(map);
-var markers = L.marker(curLocation,{draggable:'true'})
-searchControl.on("results", function (data) {
-  results.clearLayers();
-  
-  markers.setLatLng(data.results[data.results.length - 1].latlng)
-  lat.value = markers.getLatLng().lat;
-  log.value = markers.getLatLng().lng;
-});
-markers.addTo(map);
+									var searchControl = L.esri.Geocoding.geosearch({
+									position: "topright",
+									placeholder: "Enter an address or place e.g. 1 York St",
+									useMapBounds: false,
+									providers: [
+										L.esri.Geocoding.arcgisOnlineProvider({
+										apikey: apiKey,
+										nearby: {
+											lat: data.lat,
+											lng: data.log
+										}
+										})
+									]
+									}).addTo(map);
+									var curLocation = [data.lat, data.log];
+									var results = L.layerGroup().addTo(map);
+									var markers = L.marker(curLocation,{draggable:'true'})
+									searchControl.on("results", function (data) {
+									results.clearLayers();
+									
+									markers.setLatLng(data.results[data.results.length - 1].latlng)
+									lat.value = markers.getLatLng().lat;
+									log.value = markers.getLatLng().lng;
+									});
+									markers.addTo(map);
 
-markers.on('drag', function (e) {
-            lat.value = markers.getLatLng().lat;
-            log.value = markers.getLatLng().lng;
+									markers.on('drag', function (e) {
+												lat.value = markers.getLatLng().lat;
+												log.value = markers.getLatLng().lng;
 
-        });
+											});
 
 									
 															},
