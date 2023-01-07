@@ -109,15 +109,15 @@
 													+'<div class="row">'
 													+'<p> &nbsp; latitude : <span class="badge badge-secondary">'+data.lat+'</span></p>'
 													+'<p> &nbsp; longitude : <span  class="badge badge-secondary">'+data.log+'</span></p>'
-													+'<div id="map" style=" height: 200px; margin-top: 15px; width: 496px;"></div>'
+													+'<div id="map" style="height: 250px; width: 496px; " ></div>'
 													+'</div>'
 													$("#modb").html(option1);
 													option3 = '<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>'
-													+'<button type="button" onClick="Validate('+data.id+')" class="btn btn-primary">Valider</button>';
-													$("#modb").html(option3);
+													+'<button type="button" onClick="Validate('+data.id+');" class="btn btn-primary">Valider</button>';
+													$("#modalf").html(option3);
 
 
-													var map = L.map("map").setView([data.lat, data.log], 9);
+													var map = L.map("map").setView([data.lat, data.log], 10);
 																										
 													L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
 														attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -127,7 +127,8 @@
 													var markers = L.marker(curLocation,{draggable:'false'})
 													
 													markers.addTo(map);
-													map.flyTo(markers);
+													map.panTo(new L.LatLng(data.lat, data.log));
+													
   
 																			},
 												error : function(jqXHR, textStatus,
@@ -142,8 +143,23 @@
 
 								});
 
-
-				
+								function Validate(id, nb) {
+									$.ajax({
+										url: "/pharmacies/validate/" + id,
+										success: function (data, textStatus, jqXHR) {
+											alert("Valider avec success")
+										},
+										error: function (jqXHR, textStatus, errorThrown) {
+											console.log("erreur");
+											alert("Impossible de valider cette pharmacie")
+										}
+										
+									});
+									$("#main-content").load(
+										"./page/admin/validation.html");
+							
+								}
+								window.Validate = Validate;
 						
 
 

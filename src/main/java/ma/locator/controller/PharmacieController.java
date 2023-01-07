@@ -113,7 +113,7 @@ public class PharmacieController {
 	    if(newPharmacie.getZone()!=null) tmp.setZone(newPharmacie.getZone());
 	    repository.save(tmp);
 	    }
-		@PutMapping("/validate/{id}")
+		@GetMapping("/validate/{id}")
 	  public void validateZone(@PathVariable String id) {
 		Pharmacie tmp =  repository.findById(Integer.parseInt(id));
 	    tmp.setEtat("valide");
