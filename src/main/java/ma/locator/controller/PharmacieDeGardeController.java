@@ -66,7 +66,7 @@ public class PharmacieDeGardeController {
 		Set<PharmacieDeGarde> actual = new HashSet<>();
 		Date date = new Date();
 		for(PharmacieDeGarde p : tmp ) {
-			if(p.getDateFin().before(date) && p.getGarde().getType().equalsIgnoreCase("jour") && p.getPharmacie().getZone().getId()==Integer.parseInt(id) && p.getPharmacie().getEtat().equalsIgnoreCase("valide") ) {
+			if(p.getPharmacieDeGardePK().getDateDebut().after(date)==false && p.getDateFin().before(date)==false &&  p.getPharmacie().getZone().getId()==Integer.parseInt(id) && p.getPharmacie().getEtat().equalsIgnoreCase("valide") ) {
 				actual.add(p);
 			}
 		}
@@ -78,7 +78,7 @@ public class PharmacieDeGardeController {
 		Set<PharmacieDeGarde> actual = new HashSet<>();
 		Date date = new Date();
 		for(PharmacieDeGarde p : tmp ) {
-			if(p.getDateFin().after(date) && p.getPharmacieDeGardePK().getDateDebut().before(date) && p.getGarde().getType().equalsIgnoreCase("nuit") && p.getPharmacie().getZone().getId()==Integer.parseInt(id) && p.getPharmacie().getZone().getId()==Integer.parseInt(id) && p.getPharmacie().getEtat().equalsIgnoreCase("valide") ) {
+			if(p.getPharmacieDeGardePK().getDateDebut().after(date)==false && p.getDateFin().before(date)==false &&  p.getGarde().getType().equalsIgnoreCase("nuit") && p.getPharmacie().getZone().getId()==Integer.parseInt(id) && p.getPharmacie().getZone().getId()==Integer.parseInt(id) && p.getPharmacie().getEtat().equalsIgnoreCase("valide") ) {
 				actual.add(p);
 			}
 		}
