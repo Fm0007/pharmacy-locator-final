@@ -155,6 +155,7 @@
 										}
 										
 									});
+									$('#myModal').modal('hide');
 									$("#main-content").load(
 										"./page/admin/validation.html");
 							
