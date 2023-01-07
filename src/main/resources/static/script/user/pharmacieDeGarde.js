@@ -6,7 +6,7 @@ $(document)
 			
 
 				function() {
-					var mail = $("#user-name").text();
+					
 					var idd = $("#ident").text();
 					
 					$.ajax({

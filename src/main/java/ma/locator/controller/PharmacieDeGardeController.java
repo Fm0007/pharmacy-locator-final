@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ma.locator.model.PharmacieDeGarde;
 import ma.locator.repository.PharmacieDeGardeRepository;
+import ma.locator.repository.PharmacieRepository;
 
 
 
@@ -26,6 +27,10 @@ public class PharmacieDeGardeController {
 
 	@Autowired
 	private PharmacieDeGardeRepository repository;
+	@Autowired
+
+	private PharmacieRepository repository1;
+
 
 	@PostMapping("/save")
 	public void save(@RequestBody PharmacieDeGarde PharmacieDeGarde) {
@@ -94,5 +99,22 @@ public class PharmacieDeGardeController {
 	    tmp.setDateFin(newPK.getDateFin());
 	    repository.save(tmp);
 	    }
+		
+		@GetMapping("/garde/{id}")
+	public Set<PharmacieDeGarde> getPharmaciePKbyID(@PathVariable String id) {
+		List<PharmacieDeGarde> pks = repository.findAll();
+		Set<PharmacieDeGarde> result = new HashSet<PharmacieDeGarde>();
+		Pharmacie ph = repository1.findById(Integer.parseInt(id));
+		for(PharmacieDeGarde pk : pks) {
+			if(pk.getPharmacie()==ph) {
+				result.add(pk);
+				}
+		}
+		return result;
+		
+    
+	}
+		
+		
 
 }

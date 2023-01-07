@@ -65,7 +65,7 @@
                             </div>
                             <div class="user-info">
                                 <span class="user-name"> <strong>  <span sec:authentication="principal.username"/> </strong>
-                                </span> <span class="user-role"><span sec:authentication="principal.authorities"/></span> <span class="user-status">
+                                </span> <span class="user-role">Administrateur<span class="user-status">
                                     <i class="fa fa-circle"></i> <span>Online</span>
                                 </span>
                             </div>
@@ -156,8 +156,7 @@
                             </div>
                             <div class="user-info">
                                 <span class="user-name" >   <span id="user-name" sec:authentication="principal.username"/> 
-                                </span> <span class="user-role"><span sec:authentication="principal.authorities"/></span> <span class="user-status">
-                                    <i class="fa fa-circle"></i> <span>Online</span>
+                                </span> <span class="user-role"> Pharmasiste <span class="user-status">
                                 </span>
                             </div>
                         </div>
@@ -166,21 +165,15 @@
                         <!-- sidebar-search  -->
                         <div class="sidebar-menu">
                             <ul>
-                                <li class="header-menu"><span>Gestion</span></li>
-        
-                                <li><a href="./index.html" onclick="show('statistiques')"><i
-                                        class="zmdi zmdi-hc-1x zmdi-group-work"></i>My pharmacy</a></li>
-								<li class="header-menu"><span>Gardes</span></li>        
+                                <li class="header-menu"><span>Informations</span></li> 	
+								<li><a href="./index.html" onclick="show('pharmacy')"><i
+											class="zmdi zmdi-hc-1x zmdi-group-work"></i>Ma pharmacie</a></li>
+								<li class="header-menu"><span>Gestion</span></li>        
     
                                 <li><a href="./index.html" onclick="show('pharmacieDeGarde')"><i
-                                        class="zmdi zmdi-hc-1x zmdi-group-work"></i>Pharmacie de garde</a></li>
-								<li class="header-menu"><span>Modification</span></li> 	
-								<li><a href="./index.html" onclick="show('pharmacy')"><i
-											class="zmdi zmdi-hc-1x zmdi-group-work"></i>Modification</a></li>
-								<li><a href="./index.html" onclick="show('map')"><i
-								class="zmdi zmdi-hc-1x zmdi-group-work"></i>Emplacements</a></li>
-								<li><a href="./index.html" onclick="show('image')"><i
-									class="zmdi zmdi-hc-1x zmdi-group-work"></i>Image</a></li>
+                                        class="zmdi zmdi-hc-1x zmdi-group-work"></i>Les garde</a></li>
+								
+								
 							
 							</ul>
                         </div>
@@ -226,7 +219,7 @@
             <script src="js/main.js"></script>
           </div>
 </div>
-<div >
+<div>
     <div class="mb-3">
         <a class="link-primary" th:href="@{/login}">Login</a>
     </div>
