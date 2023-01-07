@@ -3,25 +3,13 @@
  */$(document)
 		.ready(
 				function() {
-					var mail = $("#user-name").text();
-					var idd ;
-					$.ajax({
-						url:'/pharmacies/'+mail,
-						type:'GET',
-						success : function(data) {	
-							idd = (data.id) ,
-							$("#nom").val(data.nom),
-							$("#adresse").val(data.adresse),							
-							$("#ville").val(data.zone.ville.id),
-							$("#zone").val(data.zone.id)
-							
-													},
-						error : function(jqXHR, textStatus,
-										errorThrown) {
-										console.log(textStatus);
-											}
-											
-					});	
+					
+					var map = L.map("map").setView([33.201924189778936, -8.492431640625002], 6);
+					var apiKey = "AAPK37d49776cc6c498bb6c24acc5f417aaaJmFZNNC0WqSluI_pXCnxtODYALo3dXQ3VGXDe-_FmSkiqGT2ORcH3AZCeI7_0lSQ";
+					var idd = $("#ident").text();
+					var url ='./get/imagep/'+idd ;
+					var option = '<img class="center" src="'+url+'" ></img>';
+					$('#img1').html(option);
 					$.ajax({
 						url:'/villes/all',
 						type:'GET',
@@ -32,6 +20,78 @@
 										});
 												
 						$('#ville').append(option);
+						$.ajax({
+							url:'/zones/all',
+							type:'GET',
+							success : function(data) {	
+							var option = '';
+							data.forEach(e=>{
+									option += '<option value ='+e.id+'>'+e.nom+'</option>';
+											});
+													
+							$('#zone').append(option);
+							$.ajax({
+								url:'/pharmacies/byId/'+idd,
+								type:'GET',
+								success : function(data) {	
+									$("#nom").val(data.nom),
+									$("#adresse").val(data.adresse),							
+									$("#ville").val(data.zone.ville.id),
+									$("#zone").val(data.zone.id),
+									$("#lat").val(data.lat),
+									$("#log").val(data.log),
+
+L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+var searchControl = L.esri.Geocoding.geosearch({
+  position: "topright",
+  placeholder: "Enter an address or place e.g. 1 York St",
+  useMapBounds: false,
+  providers: [
+    L.esri.Geocoding.arcgisOnlineProvider({
+      apikey: apiKey,
+      nearby: {
+        lat: data.lat,
+        lng: data.log
+      }
+    })
+  ]
+}).addTo(map);
+var curLocation = [data.lat, data.log];
+var results = L.layerGroup().addTo(map);
+var markers = L.marker(curLocation,{draggable:'true'})
+searchControl.on("results", function (data) {
+  results.clearLayers();
+  
+  markers.setLatLng(data.results[data.results.length - 1].latlng)
+  lat.value = markers.getLatLng().lat;
+  log.value = markers.getLatLng().lng;
+});
+markers.addTo(map);
+
+markers.on('drag', function (e) {
+            lat.value = markers.getLatLng().lat;
+            log.value = markers.getLatLng().lng;
+
+        });
+
+									
+															},
+								error : function(jqXHR, textStatus,
+												errorThrown) {
+												console.log(textStatus);
+													}
+													
+							});	
+														},
+							error : function(jqXHR, textStatus,
+											errorThrown) {
+											console.log(textStatus);
+												}
+												
+						});
 													},
 						error : function(jqXHR, textStatus,
 										errorThrown) {
@@ -39,6 +99,8 @@
 											}
 											
 					});
+					
+					
 					
 					$("#ville").change(function () {
 						var ville = $("#ville");
@@ -74,13 +136,15 @@
 								
 								var nom = $("#nom");
 								var adresse = $("#adresse");
-								
+								var lat = $("#lat");
+								var log = $("#log");
 								var zone = $("#zone");
 								
 								if ($('#btn').text() == 'Modifier') {
 									console.log(zone.val)
 									var p = {
-										
+										lat : lat.val(),
+										log : log.val(),
 										nom : nom.val(),
 										adresse : adresse.val(),
 										zone : {
