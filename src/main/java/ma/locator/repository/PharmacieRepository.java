@@ -10,4 +10,6 @@ public interface PharmacieRepository extends JpaRepository<Pharmacie, Integer> {
 	
 	Pharmacie findById(int id);
 
+
+	
 }

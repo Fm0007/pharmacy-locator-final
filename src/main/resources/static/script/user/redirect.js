@@ -23,7 +23,7 @@ function show(page) {
 	
 	if (page == "pharmacy") {
 		$('a').removeClass('active');
-		$('a:contains(Pharmacies)').addClass('active');
+		$('a:contains(Ma pharmacie)').addClass('active');
 		$("#main-content").load("page/user/pharmacy.html");
 		event.preventDefault();
 	}
@@ -43,5 +43,5 @@ function show(page) {
 	
 }
 $('a').removeClass('active');
-$('a:contains(Statistiques)').addClass('active');
+$('a:contains(Vue générale)').addClass('active');
 $("#main-content").load("page/user/statistiques.html");

@@ -194,7 +194,7 @@ markers.on('drag', function (e) {
 										}
 									});
 									$("#main-content").load(
-											"./page/user/statistiques.html");
+											"./page/user/pharmacy.html");
 								}
 							});
 

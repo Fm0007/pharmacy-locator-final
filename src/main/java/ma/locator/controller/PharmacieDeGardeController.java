@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import ma.locator.model.Pharmacie;
 import ma.locator.model.PharmacieDeGarde;
 import ma.locator.repository.PharmacieDeGardeRepository;
 import ma.locator.repository.PharmacieRepository;
@@ -53,7 +54,7 @@ public class PharmacieDeGardeController {
 		Set<PharmacieDeGarde> actual = new HashSet<>();
 		Date date = new Date();
 		for(PharmacieDeGarde p : tmp ) {
-			if(p.getDateFin().after(date) && p.getPharmacie().getEtat().equalsIgnoreCase("valide") ) {
+			if(p.getPharmacieDeGardePK().getDateDebut().after(date)==false && p.getDateFin().before(date)==false &&  p.getPharmacie().getEtat().equalsIgnoreCase("valide") ) {
 				actual.add(p);
 			}
 		}
