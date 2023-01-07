@@ -64,23 +64,17 @@
 										data : "nom"
 									},
 									{
-										data : "adresse"
-									},
-									{
-										data : "lat"
-									},
-									{
-										data : "log"
-									},
-									{
-										data : "zone.nom"
+										data : "zone.ville.nom"
 									},
 									
 									{
+										data : "zone.nom"
+									},
+									{
 										"render" : function() {
-											return '<button type="button" class="btn btn-outline-secondary supprimer>Valider</button>';
+											return '<button type="button" class="btn btn-outline-secondary modifier">Valider</button>';
 										}
-									} ]
+									}  ]
 
 						});
 		
@@ -89,64 +83,62 @@
 						$('#table-content')
 						.on(
 								'click',
-								'.supprimer',
+								'.modifier',
 								function() {
 
 									var id = $(this).closest('tr').find(
 											'td').eq(0).text();
-									var oldLing = $(this).closest('tr')
-											.clone();
-									var newLigne = '<tr style="position: relative;" class="bg-light" ><th scope="row">'
-											+ id
-											+ '</th><td colspan="4" style="height: 100%;">';
-									newLigne += '<h4 class="d-inline-flex">Voulez vous vraiment valider cette pharmacie ? </h4>';
-									newLigne += '<button type="button" class="btn btn-outline-primary btn-sm confirmer" style="margin-left: 25px;">Oui</button>';
-									newLigne += '<button type="button" class="btn btn-outline-danger btn-sm annuler" style="margin-left: 25px;">Non</button></td></tr>';
+											$.ajax({
+												url:'/pharmacies/byId/'+id,
+												type:'GET',
+												success : function(data) {	
+													option = '<h5 class="modal-title" id="exampleModalLabel">'+ data.nom +' title</h5>'
+													+'<button type="button" class="close" data-dismiss="modal" aria-label="Close">'
+													 + '<span aria-hidden="true">&times;</span>';
+													$("#modt").html(option);
+													option1 = '<div class="row">'
+													+'<p > &nbsp; Nom : <span class="badge badge-secondary">'+data.nom+'</span></p>'
+													+'</div>'
+													+'<div class="row">'
+													+'<p>&nbsp; Adresse : <span class="badge badge-secondary">'+data.adresse+'</span></p>'
+													+'</div>'
+													+'<div class="row">'
+													+'<p> &nbsp; Ville : <span class="badge badge-secondary">'+data.zone.ville.nom+'</span></p>'
+													+'<p> &nbsp; Zone : <span  class="badge badge-secondary">'+data.zone.nom+'</span></p>'
+													+'</div>'
+													+'<div class="row">'
+													+'<p> &nbsp; latitude : <span class="badge badge-secondary">'+data.lat+'</span></p>'
+													+'<p> &nbsp; longitude : <span  class="badge badge-secondary">'+data.log+'</span></p>'
+													+'<div id="map" style=" height: 200px; margin-top: 15px; width: 496px;"></div>'
+													+'</div>'
+													$("#modb").html(option1);
+													option3 = '<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>'
+													+'<button type="button" onClick="Validate('+data.id+')" class="btn btn-primary">Valider</button>';
+													$("#modb").html(option3);
 
-									$(this).closest('tr').replaceWith(
-											newLigne);
-									$('.annuler').click(
-											function() {
-												$(this).closest('tr')
-														.replaceWith(
-																oldLing);
-											});
-									$('.confirmer')
-											.click(
-													function(e) {
-														e.preventDefault();
-														$
-																.ajax({
-																	url : 'pharmacies/validate/'
-																			+ id,
-																	data : {},
-																	type : 'PUT',
-																	async : false,
-																	success : function(
-																			data,
-																			textStatus,
-																			jqXHR) {
-																		if (data
-																				.includes("error") == true) {
-																			$(
-																					"#error")
-																					.modal();
-																		} else {
-																			table.ajax
-																					.reload();
-																		}
-																	},
-																	error : function(
-																			jqXHR,
-																			textStatus,
-																			errorThrown) {
-																		$(
-																				"#error")
-																				.modal();
+
+													var map = L.map("map").setView([data.lat, data.log], 9);
+																										
+													L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+														attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
+													}).addTo(map);
+													
+													var curLocation = [data.lat, data.log];
+													var markers = L.marker(curLocation,{draggable:'false'})
+													
+													markers.addTo(map);
+													map.flyTo(markers);
+  
+																			},
+												error : function(jqXHR, textStatus,
+																errorThrown) {
+																console.log(textStatus);
 																	}
-																});
-
-													});
+																	
+											});	
+									$('#myModal').modal('toggle');
+									$('#myModal').modal('show');
+									
 
 								});
 

@@ -29,7 +29,7 @@
 									option += '<option value ='+e.id+'>'+e.nom+'</option>';
 											});
 													
-							$('#zone').append(option);
+							$('#zone').html(option);
 							$.ajax({
 								url:'/pharmacies/byId/'+idd,
 								type:'GET',

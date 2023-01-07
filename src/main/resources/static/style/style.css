@@ -25,6 +25,7 @@
     opacity: 0;
 }
 #map { height: 400px; margin-top: 15px; width: 833px;}
+#map1 { height: 200px; margin-top: 15px; width: 400px;}
 .switch.switch-3d .switch-label {
     position: relative;
     display: block;
