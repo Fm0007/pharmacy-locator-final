@@ -1,4 +1,4 @@
-package com.cb.controller;
+package ma.locator.controller;
 
 import java.util.List;
 import java.util.Set;
@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cb.model.Ville;
-import com.cb.model.Zone;
-import com.cb.repository.VilleRepository;
+import ma.locator.model.Ville;
+import ma.locator.model.Zone;
+import ma.locator.repository.VilleRepository;
 
 @RestController
 @RequestMapping("villes")

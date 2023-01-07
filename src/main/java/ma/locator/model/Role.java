@@ -1,4 +1,4 @@
-package com.cb.model;
+package ma.locator.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

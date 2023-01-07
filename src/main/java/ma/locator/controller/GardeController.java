@@ -1,4 +1,4 @@
-package com.cb.controller;
+package ma.locator.controller;
 
 import java.util.List;
 
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cb.model.Garde;
-import com.cb.repository.GardeRepository;
+import ma.locator.model.Garde;
+import ma.locator.repository.GardeRepository;
 
 
 @RestController

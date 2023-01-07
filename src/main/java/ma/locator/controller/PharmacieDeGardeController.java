@@ -1,4 +1,4 @@
-package com.cb.controller;
+package ma.locator.controller;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cb.model.PharmacieDeGarde;
-import com.cb.repository.PharmacieDeGardeRepository;
+import ma.locator.model.PharmacieDeGarde;
+import ma.locator.repository.PharmacieDeGardeRepository;
 
 
 
@@ -60,7 +60,7 @@ public class PharmacieDeGardeController {
 		Set<PharmacieDeGarde> actual = new HashSet<>();
 		Date date = new Date();
 		for(PharmacieDeGarde p : tmp ) {
-			if(p.getDateFin().after(date) && p.getGarde().getType().equalsIgnoreCase("jour") && p.getPharmacie().getZone().getId()==Integer.parseInt(id) && p.getPharmacie().getEtat().equalsIgnoreCase("valide") ) {
+			if(p.getDateFin().before(date) && p.getGarde().getType().equalsIgnoreCase("jour") && p.getPharmacie().getZone().getId()==Integer.parseInt(id) && p.getPharmacie().getEtat().equalsIgnoreCase("valide") ) {
 				actual.add(p);
 			}
 		}
@@ -72,7 +72,7 @@ public class PharmacieDeGardeController {
 		Set<PharmacieDeGarde> actual = new HashSet<>();
 		Date date = new Date();
 		for(PharmacieDeGarde p : tmp ) {
-			if(p.getDateFin().after(date) && p.getGarde().getType().equalsIgnoreCase("nuit") && p.getPharmacie().getZone().getId()==Integer.parseInt(id) && p.getPharmacie().getZone().getId()==Integer.parseInt(id) && p.getPharmacie().getEtat().equalsIgnoreCase("valide") ) {
+			if(p.getDateFin().after(date) && p.getPharmacieDeGardePK().getDateDebut().before(date) && p.getGarde().getType().equalsIgnoreCase("nuit") && p.getPharmacie().getZone().getId()==Integer.parseInt(id) && p.getPharmacie().getZone().getId()==Integer.parseInt(id) && p.getPharmacie().getEtat().equalsIgnoreCase("valide") ) {
 				actual.add(p);
 			}
 		}

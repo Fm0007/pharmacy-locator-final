@@ -1,15 +1,18 @@
-package com.cb.service;
+package ma.locator.service;
 
 
-import com.cb.dto.UserDto;
-import com.cb.model.Role;
-import com.cb.model.User;
-import com.cb.repository.RoleRepository;
-import com.cb.repository.UserRepository;
-import com.cb.util.TbConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import ma.locator.dto.UserDto;
+import ma.locator.model.Pharmacie;
+import ma.locator.model.Role;
+import ma.locator.model.User;
+import ma.locator.repository.PharmacieRepository;
+import ma.locator.repository.RoleRepository;
+import ma.locator.repository.UserRepository;
+import ma.locator.util.TbConstants;
 
 import java.util.Arrays;
 
@@ -25,6 +28,10 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+
+    @Autowired
+    private PharmacieRepository repository;
+
     @Override
     public void saveUser(UserDto userDto) {
         Role role = roleRepository.findByName(TbConstants.Roles.USER);
@@ -34,6 +41,11 @@ public class UserServiceImpl implements UserService {
 
         User user = new User(userDto.getName(), userDto.getEmail(), passwordEncoder.encode(userDto.getPassword()),
                 Arrays.asList(role));
+        Pharmacie ph = new Pharmacie("nom a définir", "adresse a définir", 33.00, -8.00, null, "non valide");
+        
+        repository.save(ph);
+        user.setPharmacie(ph);
+        
         userRepository.save(user);
     }
 

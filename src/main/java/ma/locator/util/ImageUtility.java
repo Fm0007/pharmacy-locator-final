@@ -1,4 +1,4 @@
-package com.cb.util;
+package ma.locator.util;
 
 
 import java.io.ByteArrayOutputStream;

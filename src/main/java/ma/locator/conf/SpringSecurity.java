@@ -1,4 +1,4 @@
-package com.cb.conf;
+package ma.locator.conf;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

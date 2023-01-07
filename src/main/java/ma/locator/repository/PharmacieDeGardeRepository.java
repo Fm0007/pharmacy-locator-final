@@ -1,13 +1,11 @@
-package com.cb.repository;
+package ma.locator.repository;
 
 
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-
-
-import com.cb.model.PharmacieDeGarde;
+import ma.locator.model.PharmacieDeGarde;
 
 
 

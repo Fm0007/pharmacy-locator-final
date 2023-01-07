@@ -1,4 +1,4 @@
-package com.cb.model;
+package ma.locator.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,7 +27,7 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @OneToOne(mappedBy ="user")
+    @OneToOne(cascade = CascadeType.ALL)
     private Pharmacie pharmacie;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

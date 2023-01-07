@@ -1,8 +1,8 @@
-package com.cb.repository;
+package ma.locator.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.cb.model.Ville;
+import ma.locator.model.Ville;
 
 
 

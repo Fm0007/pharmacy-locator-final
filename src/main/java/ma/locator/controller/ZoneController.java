@@ -1,6 +1,7 @@
-package com.cb.controller;
+package ma.locator.controller;
 
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -14,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cb.model.Pharmacie;
-import com.cb.model.Zone;
-import com.cb.repository.ZoneRepository;
+import ma.locator.model.Pharmacie;
+import ma.locator.model.Zone;
+import ma.locator.repository.ZoneRepository;
 
 
 @RestController
@@ -50,7 +51,13 @@ public class ZoneController {
 	@GetMapping("/pharmacies/{id}")
 	public Set<Pharmacie> findByZone(@PathVariable(required = true) String id) {
 		Zone s = repository.findById(Integer.parseInt(id));
-		return s.getPharmacies() ;
+		Set<Pharmacie> t = new HashSet<>();
+		for(Pharmacie p : s.getPharmacies() ) {
+			if(p.getEtat().equalsIgnoreCase("valide") ) {
+				t.add(p);
+			}
+		}
+		return t ;
 	}
 	
 	@GetMapping(value = "/count")

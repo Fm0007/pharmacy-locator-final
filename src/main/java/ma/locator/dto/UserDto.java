@@ -1,4 +1,4 @@
-package com.cb.dto;
+package ma.locator.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

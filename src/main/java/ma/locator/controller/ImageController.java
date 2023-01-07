@@ -1,4 +1,4 @@
-package com.cb.controller;
+package ma.locator.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,11 +8,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.cb.model.Image;
-import com.cb.model.Pharmacie;
-import com.cb.repository.ImageRepository;
-import com.cb.repository.PharmacieRepository;
-import com.cb.util.ImageUtility;
+import ma.locator.model.Image;
+import ma.locator.model.Pharmacie;
+import ma.locator.repository.ImageRepository;
+import ma.locator.repository.PharmacieRepository;
+import ma.locator.util.ImageUtility;
 
 import java.io.IOException;
 import java.util.List;

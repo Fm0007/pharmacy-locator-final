@@ -1,4 +1,4 @@
-package com.cb.controller;
+package ma.locator.controller;
 
 import java.security.Principal;
 

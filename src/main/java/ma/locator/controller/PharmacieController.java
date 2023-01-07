@@ -1,4 +1,4 @@
-package com.cb.controller;
+package ma.locator.controller;
 
 import java.io.Console;
 import java.util.Base64;
@@ -18,10 +18,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.cb.model.Pharmacie;
-import com.cb.model.User;
-import com.cb.repository.PharmacieRepository;
-import com.cb.repository.UserRepository;
+import ma.locator.model.Pharmacie;
+import ma.locator.model.User;
+import ma.locator.repository.PharmacieRepository;
+import ma.locator.repository.UserRepository;
 
 
 @RestController
@@ -83,6 +83,21 @@ public class PharmacieController {
 		
 	}
 
+	@GetMapping("byId/{id}")
+	public Pharmacie finbyID(@PathVariable(required = true) String id) {
+		Pharmacie tmp = repository.findById(Integer.parseInt(id));
+		/*if(tmp.getPharmacie()==null){
+			Pharmacie ph = new Pharmacie("Nom", "adresse" , null, null, null);
+			ph.setEtat("non valide");
+			ph.setUser(tmp);
+			repository.save(ph);
+		}*/
+		
+		
+	return tmp;
+		
+	}
+
 	@GetMapping(value = "/count")
 	public long countPharmacie() {
 		return repository.count();
@@ -98,5 +113,10 @@ public class PharmacieController {
 	    if(newPharmacie.getZone()!=null) tmp.setZone(newPharmacie.getZone());
 	    repository.save(tmp);
 	    }
-
+		@PutMapping("/validate/{id}")
+	  public void validateZone(@PathVariable String id) {
+		Pharmacie tmp =  repository.findById(Integer.parseInt(id));
+	    tmp.setEtat("valide");
+	    repository.save(tmp);
+	    }
 }

@@ -1,4 +1,4 @@
-package com.cb.model;
+package ma.locator.model;
 
 import java.util.Set;
 
@@ -31,7 +31,7 @@ public class Pharmacie {
 	@ManyToOne
 	private Zone zone;
 	@JsonIgnore
-	@OneToOne
+	@OneToOne(mappedBy = "pharmacie")
 	private User user;
 	@JsonIgnore
 	@OneToOne

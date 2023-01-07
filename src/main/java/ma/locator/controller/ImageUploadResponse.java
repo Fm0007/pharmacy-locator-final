@@ -1,4 +1,4 @@
-package com.cb.controller;
+package ma.locator.controller;
 
 public class ImageUploadResponse {
     private String message;

@@ -1,4 +1,4 @@
-package com.cb;
+package ma.locator;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
