@@ -214,7 +214,7 @@ $(document)
 														}
 													});
 													$("#main-content").load(
-															"./page/user/pgarde.html");
+															"./page/user/pharmacieDeGarde.html");
 												}
 											});
 										});
