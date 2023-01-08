@@ -8,8 +8,23 @@
 					var apiKey = "AAPK37d49776cc6c498bb6c24acc5f417aaaJmFZNNC0WqSluI_pXCnxtODYALo3dXQ3VGXDe-_FmSkiqGT2ORcH3AZCeI7_0lSQ";
 					var idd = $("#ident").text();
 					var url ='./get/imagep/'+idd ;
-					var option = '<img class="center" src="'+url+'" ></img>';
-					$('#img1').html(option);
+					var urlsec = "./get/image/Beige%20And%20Blue%20Hospital%20Design%20Logow.png";
+					
+					$.ajax({
+						url: url,
+						type:'GET',
+						success : function(data) {	
+							var option = '<img class="center" src="'+url+'"></img>';
+							$('#img1').html(option);
+													},
+						error : function(jqXHR, textStatus,
+										errorThrown) {
+										console.log(textStatus);
+										var option = '<img class="center" src="'+urlsec+'"></img>';
+										$('#img1').html(option);
+											}
+										})
+					
 					$.ajax({
 						url:'/villes/all',
 						type:'GET',

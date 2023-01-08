@@ -37,7 +37,7 @@ $(document)
 												option += '<option value ='+e.idGarde+'>'+e.type+'</option>';
 														});
 																
-										$('#garde').append(option);
+										$('#garde').html(option);
 																	},
 										error : function(jqXHR, textStatus,
 														errorThrown) {

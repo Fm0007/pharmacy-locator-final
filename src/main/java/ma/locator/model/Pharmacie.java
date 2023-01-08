@@ -30,12 +30,7 @@ public class Pharmacie {
 
 	@ManyToOne
 	private Zone zone;
-	@JsonIgnore
-	@OneToOne(mappedBy = "pharmacie")
-	private User user;
-	@JsonIgnore
-	@OneToOne
-	private Image image;
+	
 	@JsonIgnore
 	@OneToMany(mappedBy = "pharmacie",fetch = FetchType.EAGER)
 	private Set<PharmacieDeGarde> gardes ;
@@ -68,13 +63,6 @@ public class Pharmacie {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
 
 	public Zone getZone() {
 		return zone;
@@ -94,12 +82,7 @@ public class Pharmacie {
 	public String getEtat() {
 		return etat;
 	}
-	public void setImage(Image image) {
-		this.image = image;
-	}
-	public Image getImage() {
-		return image;
-	}
+	
 
 	public void setNom(String nom) {
 		this.nom = nom;
