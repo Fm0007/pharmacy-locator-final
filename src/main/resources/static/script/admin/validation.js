@@ -109,16 +109,19 @@
 													+'<div class="row">'
 													+'<p> &nbsp; latitude : <span class="badge badge-secondary">'+data.lat+'</span></p>'
 													+'<p> &nbsp; longitude : <span  class="badge badge-secondary">'+data.log+'</span></p>'
-													+'<div id="map" style="height: 250px; width: 496px; " ></div>'
+													+'<div id="map" style="height: 250px; width: 100%; " ></div>'
 													+'</div>'
 													$("#modb").html(option1);
 													option3 = '<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>'
 													+'<button type="button" onClick="Validate('+data.id+');" class="btn btn-primary">Valider</button>';
 													$("#modalf").html(option3);
+													L.map('map',{
+														center: [parseFloat(parseInt(data.lat)), parseFloat(parseInt(data.log))],
+														zoom: 15
+													  });
 
 													
 
-													var map = L.map("map").setView([data.lat, data.log], 10);
 																										
 													L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
 														attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -129,6 +132,7 @@
 													
 													markers.addTo(map);
 													map.panTo(new L.LatLng(data.lat, data.log));
+													
 													
   
 																			},

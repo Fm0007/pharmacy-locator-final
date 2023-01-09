@@ -6,11 +6,11 @@ $(document).ready(function(){
 		url:'/pharmacies/'+mail,
 		type:'GET',
 		success : function(data) {	
-			var url ='./get/imagep/'+data.id ;
+			var urlt ='./get/imagep/'+data.id ;
 			var idd = data.id;
 			$("#ident").val(data.id);
 				$.ajax({
-					url: url,
+					url: urlt,
 					type:'GET',
 					success : function(data) {	
 
@@ -18,12 +18,12 @@ $(document).ready(function(){
 					error : function(jqXHR, textStatus,
 						errorThrown) {
 						console.log(textStatus);
-						url=urlsec;
+						urlt="./get/image/Beige%20And%20Blue%20Hospital%20Design%20Logow.png";
 							}
 				});
 				var option2;
 			var option = '<div class="row align-items-center no-gutters">'
-					+'<div class="col"><img width="300" height="300" src="'+url+'" style="margin-left: 5px;"></div>'
+					+'<div class="col"><img width="300" height="300" src="'+urlt+'" style="margin-left: 5px;"></div>'
 				+'</div>'
 				+'<p style="margin-top: 10px;"> '+data.nom+' </p>'
 				+'<p> Adresse :&nbsp; '+data.adresse+'</p>'
