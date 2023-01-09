@@ -1,47 +1,137 @@
 $(document).ready(function(){
 	var mail = $("#user-name").text();
+	
+	var urlsec = "./get/image/Beige%20And%20Blue%20Hospital%20Design%20Logow.png";
 	$.ajax({
 		url:'/pharmacies/'+mail,
 		type:'GET',
 		success : function(data) {	
-			$("#ulat").text(data.lat);
-			$("#ulog").text(data.log);
+			var url ='./get/imagep/'+data.id ;
+			var idd = data.id;
 			$("#ident").text(data.id);
-			var option = '<div class="col-md-7 border-right no-gutters">'
-				+'<div class="py-4">'
-					+'<img class="phimg" src="./get/imagep/'+data.id+'" width="450"  >'
-					+'<h3></h3>'
-					+'<h4 class="text-secondary">'+data.nom+'</h4>'
-					+'<div class="stats">'
-						+'<table class="table table-borderless">'
-							+'<tbody>'
-								
-								+'<tr>'
-									+'<td>'
-										+'<div class="d-flex flex-column"> <span class="text-left head">Lat :</span> <span class="text-left bottom">'+data.lat+'</span> </div>'
-									+'</td>'
-									+'<td>'
-										+'<div class="d-flex flex-column"> <span class="text-left head">lon :</span> <span class="text-left bottom">'+data.log+'</span> </div>'
-									+'</td>'
-								+'</tr>'
-							+'</tbody>'
-						+'</table>'
+				$.ajax({
+					url: url,
+					type:'GET',
+					success : function(data) {	
+
+					},
+					error : function(jqXHR, textStatus,
+						errorThrown) {
+						console.log(textStatus);
+						url=urlsec;
+							}
+				});
+				var option2;
+			var option = '<div class="row align-items-center no-gutters">'
+					+'<div class="col"><img width="300" height="300" src="'+url+'" style="margin-left: 5px;"></div>'
+				+'</div>'
+				+'<p style="margin-top: 10px;"> '+data.nom+' </p>'
+				+'<p> Adresse :&nbsp; '+data.adresse+'</p>'
+				+'<p> Ville :&nbsp; '+data.zone.ville.nom+'</p>'
+				+'<p> Zone :&nbsp; '+data.zone.nom+'</p>';
+				$('#info').html(option);
+				var option1 ="";
+				var option2 ="";
+			
+				if(data.etat=="non valide"){
+					option2 = option2 + '<div  class="card text-white bg-warning shadow">'
+					+'<div class="card-body">'
+						+'<p class="m-0">Status : en cours de vérification</p>'
+						+'<p class="text-white-50 small m-0"></p>'
 					+'</div>'
-				+'</div>'
-			+'</div>'
-			+'<div class="col-md-5">'
-				+'<div class="py-3">'
-					+'<div> <span class="d-block head">Addresse : </span> <span class="bottom">'+data.adresse+'</span> </div>'
-					+'<div class="mt-4"> <span class="d-block head">Zone :</span> <span class="bottom">'+data.zone.nom+'</span> </div>'
-					+'<div class="mt-4"> <span class="d-block head">Ville :</span> <span class="bottom">'+data.zone.ville.nom+'</span> </div>'
-					+'<div class="mt-4"> <span class="d-block head">Lat :</span> <span class="bottom">'+data.lat+'</span> </div>'
-					+'<div class="mt-4"> <span class="d-block head">log :</span> <span class="bottom">'+data.log+'</span> </div>'
+					+'</div>';
+				}
+				if(data.etat=="valide"){
+					option2 = option2 + '<div  class="card text-white bg-success shadow">'
+					+'<div class="card-body">'
+						+'<p class="m-0">Status : pharmacie vérifié</p>'
+						+'<p class="text-white-50 small m-0"></p>'
+					+'</div>'
+				+'</div>';
+				}
+		
+				
+				$.ajax({
+						url: './pharmacieDeGardes/garde/'+idd,
+						type:'GET',
+						success : function(data1) {	
+							
+							
+
+							
+							$('#status').html(option2);			
+							var today = new Date();
+							if(data1.pharmacieDeGardePK!=null && data1.dateFin!=null){
+								var datedd = data1.pharmacieDeGardePK.dateDebut;
+							
+								var dated = parseDate(datedd);
+								var dateff = data1.dateFin;
+								
+								var datef = parseDate(dateff);
+								if(dated.getTime()<today.getTime()){
+									if(datef.getTime()>today.getTime()){
+																												
+										var dateFin = parseDate(data1.dateFin);
+										var formattedDate = [dateFin.getMonth() + 1, dateFin.getDate(), dateFin.getFullYear()].join('/');
+										var formattedDate1 = [ dateFin.getDate(), dateFin.getMonth() + 1, dateFin.getFullYear()].join('/');
+										console.log(formattedDate);
+										$('#conteur').attr("data-count",formattedDate);
+										var optional = '<h6 style="text-align: center ;">Le : '+formattedDate1+' pour achever votre garde</h6>'
+										$('#dateF').html(optional);
+										$('#textual').html('<span>Vous êtes en Garde il reste :</span>');
+		
+									}
+									else{
+										$('#textual').html('<span>Vous avez pas de Garde programmé </span>');
+										$('#conteur').css('visibility', 'hidden');
+									}
+									
+	
+								}
+								else{
+									if(datef.getTime()>dated.getTime()){
+										var dateFin = parseDate(datedd);
+										var formattedDate = [dateFin.getMonth() + 1, dateFin.getDate(), dateFin.getFullYear()].join('/');
+										var formattedDate1 = [ dateFin.getDate(), dateFin.getMonth() + 1, dateFin.getFullYear()].join('/');
+										console.log(formattedDate);
+										$('#conteur').attr("data-count",formattedDate);
+										var optional = '<h6 style="text-align: center ;">Le : '+formattedDate1+' pour La prochaine garde</h6>'
+										$('#dateF').html(optional);
+										$('#textual').html('<span>Votre Prochaine Garde est dans :</span>');
+										
+										
+		
+									}
+									else{
+										$('#textual').html('<span>Vous avez pas de Garde programmé </span>');
+										$('#conteur').css('visibility', 'hidden');
+	
+									}
+	
+								}
+							
+
+							}
+							else{
+								$('#textual').html('<span>Vous avez pas de Garde programmé </span>');
+										$('#conteur').css('visibility', 'hidden');
+							}
+							
+							
+							
+							
+							
+						},
+						error : function(jqXHR, textStatus,
+							errorThrown) {
+							console.log(textStatus);
+							
+								}
+					});
 					
-				+'</div>'
-			+'</div>'
-		+'</div>';
-		$('#info').html(option);
-									},
+
+		}
+									,
 		error : function(jqXHR, textStatus,
 						errorThrown) {
 						console.log(textStatus);
@@ -51,7 +141,11 @@ $(document).ready(function(){
 	
 
 	
-
+	function parseDate(input) {
+		var parts = input.match(/(\d+)/g);
+		// new Date(year, month [, date [, hours[, minutes[, seconds[, ms]]]]])
+		return new Date(parts[0], parts[1]-1, parts[2]); // months are 0-based
+	  }
 	
 
 })
