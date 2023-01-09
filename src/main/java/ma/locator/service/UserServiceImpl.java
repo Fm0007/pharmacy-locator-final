@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService {
 
         User user = new User(userDto.getName(), userDto.getEmail(), passwordEncoder.encode(userDto.getPassword()),
                 Arrays.asList(role));
-        Pharmacie ph = new Pharmacie("nom a définir", "adresse a définir", 33.10, -8.10, zrepository.findById(4), "non valide");
+        Pharmacie ph = new Pharmacie("nom a définir", "adresse a définir", 33.10, -8.10, zrepository.findById(1), "non valide");
         
         repository.save(ph);
         user.setPharmacie(ph);
