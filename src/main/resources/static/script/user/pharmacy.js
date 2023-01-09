@@ -6,7 +6,7 @@
 					
 					var map = L.map("map").setView([33.201924189778936, -8.492431640625002], 6);
 					var apiKey = "AAPK37d49776cc6c498bb6c24acc5f417aaaJmFZNNC0WqSluI_pXCnxtODYALo3dXQ3VGXDe-_FmSkiqGT2ORcH3AZCeI7_0lSQ";
-					var idd = $("#ident").text();
+					var idd = $("#ident").val();
 					var url ='./get/imagep/'+idd ;
 					var urlsec = "./get/image/Beige%20And%20Blue%20Hospital%20Design%20Logow.png";
 					

@@ -1,12 +1,12 @@
 $(document)
 		.ready(
 				function() {
-					var id = $("#ident").text(),
+					var id = $("#ident").val(),
 
 					table = $('#tpharmacieDeGarde')
 							.DataTable({
 										ajax : {
-											url : "pharmacieDeGardes/garde/"+id,
+											url : "pharmacieDeGardes/garde/actual/"+id,
 											dataSrc : ''
 										},
 										columns : [

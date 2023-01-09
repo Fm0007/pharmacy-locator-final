@@ -116,6 +116,7 @@
 													+'<button type="button" onClick="Validate('+data.id+');" class="btn btn-primary">Valider</button>';
 													$("#modalf").html(option3);
 
+													
 
 													var map = L.map("map").setView([data.lat, data.log], 10);
 																										

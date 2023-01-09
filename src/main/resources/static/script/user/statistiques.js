@@ -8,7 +8,7 @@ $(document).ready(function(){
 		success : function(data) {	
 			var url ='./get/imagep/'+data.id ;
 			var idd = data.id;
-			$("#ident").text(data.id);
+			$("#ident").val(data.id);
 				$.ajax({
 					url: url,
 					type:'GET',
