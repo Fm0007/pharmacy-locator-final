@@ -1,5 +1,5 @@
 # Use an OpenJDK Runtime as a parent image
-FROM openjdk:17-jre-alpine
+FROM openjdk:17-oracle
 # Define environment variables
 ENV SPRING_OUTPUT_ANSI_ENABLED=ALWAYS \JAVA_OPTS=""
 # Set the working directory to /app
