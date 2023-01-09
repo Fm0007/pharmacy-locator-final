@@ -1,8 +1,27 @@
-### Prerequisite
+### Téléchargement des dépendence
 
-Create a database in MySql with the help of below mentioned query:
+Creer une base de donnée avec le nom pharmacie:
+et telecharger les dependences:
 
-``` CREATE SCHEMA `spring-security-form-login`; ```
+``` mvn install ```
 
-Documentation: https://www.codeburps.com/post/spring-boot-form-login
+### Lancement du projet :
+
+Lancer le projet Par : 
+``` mvn spring-boot:run ```
+
+et vérifier la création de la base de données
+
+Puis ajouter un compte admin avec le role "ROLE_ADMIN"
+
+et une ville avec id=1 nomée a définir et une zone qui appartient à cette ville nomée a définir
+
+
+Lien utile :
+
+Pour s'authentifier : localhost:8090/login
+pour Swagger : localhost:8090/swagger-ui/index.html
+
+
+
 
