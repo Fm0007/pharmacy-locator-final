@@ -115,7 +115,8 @@
 													option3 = '<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>'
 													+'<button type="button" onClick="Validate('+data.id+');" class="btn btn-primary">Valider</button>';
 													$("#modalf").html(option3);
-													L.map('map',{
+
+													var map = L.map('map',{
 														center: [parseFloat(parseInt(data.lat)), parseFloat(parseInt(data.log))],
 														zoom: 15
 													  });
