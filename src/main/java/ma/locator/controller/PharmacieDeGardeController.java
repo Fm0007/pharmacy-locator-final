@@ -113,7 +113,7 @@ public class PharmacieDeGardeController {
 						result = pk;
 				}
 				
-				if(pk.getDateFin().after(date)==true && pk.getPharmacieDeGardePK().getDateDebut().before(date)==true ){
+				if(pk.getDateFin().after(date)==true && pk.getPharmacieDeGardePK().getDateDebut().before(date)==false ){
 						result = pk;
 				}
 				
@@ -125,7 +125,7 @@ public class PharmacieDeGardeController {
 		return result;
     
 	}
-
+ /* 
 	@GetMapping("/garde/actual/{id}")
 	public Set<PharmacieDeGarde> getPharmaciePKbyActual(@PathVariable String id) {
 		List<PharmacieDeGarde> pks = repository.findAll();
@@ -134,6 +134,22 @@ public class PharmacieDeGardeController {
 		Date date = new Date();
 		for(PharmacieDeGarde p : pks) {
 			if(p.getPharmacie()==ph && p.getPharmacieDeGardePK().getDateDebut().after(date)==false && p.getDateFin().before(date)==false) {
+				result.add(p);
+				}
+		}
+		return result;
+		
+    
+	}*/
+
+	@GetMapping("/garde/actual/{id}")
+	public Set<PharmacieDeGarde> getPharmaciePKbyActual(@PathVariable String id) {
+		List<PharmacieDeGarde> pks = repository.findAll();
+		Set<PharmacieDeGarde> result = new HashSet<PharmacieDeGarde>();
+		Pharmacie ph = repository1.findById(Integer.parseInt(id));
+		Date date = new Date();
+		for(PharmacieDeGarde p : pks) {
+			if(p.getPharmacie()==ph ) {
 				result.add(p);
 				}
 		}

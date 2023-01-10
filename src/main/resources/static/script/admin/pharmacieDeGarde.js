@@ -154,7 +154,7 @@ $(document)
 								var garde = $("#garde");
 								if ($('#btn').text() == 'Ajouter') {
 									var p = {
-										dateDebut : dateDebut.val(),
+										
 										dateFin : dateFin.val(),
 										pharmacie : {
 											id: pharmacy.val()

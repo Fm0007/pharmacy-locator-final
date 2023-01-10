@@ -1,12 +1,12 @@
 $(document)
 		.ready(
 				function() {
-					var id = $("#ident").val(),
+					var idd = $("#ident").val(),
 
 					table = $('#tpharmacieDeGarde')
 							.DataTable({
 										ajax : {
-											url : "pharmacieDeGardes/garde/actual/"+id,
+											url : "pharmacieDeGardes/garde/actual/"+idd,
 											dataSrc : ''
 										},
 										columns : [
@@ -48,25 +48,25 @@ $(document)
 
 									$('#btn').click(
 										function() {
+											
 											var dateDebut = $("#dateDebut");
 											var dateFin = $("#dateFin");
-											var pharmacy = $("#pharmacy");
+											
 											var garde = $("#garde");
 											if ($('#btn').text() == 'Ajouter') {
+												
 												var p = {
-													dateDebut : dateDebut.val(),
+													
 													dateFin : dateFin.val(),
 													pharmacie : {
-														id: id
+														id: idd
 													},
 													garde : {
 														idGarde : garde.val()
 													},
-													pharmacieDeGardePK : {
-														pharmaciePK: id,
-														gardePK: garde.val(),
+													
 														dateDebut : dateDebut.val()
-													  }
+													  
 													
 													
 												};
@@ -98,8 +98,7 @@ $(document)
 												'.supprimer',
 												function() {
 					
-													var id = $(this).closest('tr').find(
-															'td').eq(0).text();
+													
 													
 													var oldLing = $(this).closest('tr')
 															.clone();
