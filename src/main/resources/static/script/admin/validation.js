@@ -153,20 +153,29 @@
 									$.ajax({
 										url: "/pharmacies/validate/" + id,
 										success: function (data, textStatus, jqXHR) {
-											alert("Valider avec success")
+											$('#myModal').modal('hide');
+											$('#InfoModal').modal('show');
+											$('#infb').html("<h2>Validé avec success</h2>")
+											
 										},
 										error: function (jqXHR, textStatus, errorThrown) {
 											console.log("erreur");
-											alert("Impossible de valider cette pharmacie")
+											$('#myModal').modal('hide');
+											$('#infb').html("<h2>Echec de l'opération</h2>")
+											$('#InfoModal').modal('show');
+											
 										}
 										
 									});
-									$('#myModal').modal('hide');
-									$("#main-content").load(
-										"./page/admin/validation.html");
+									
 							
 								}
+								function Refresh() {
+									$('#InfoModal').modal('hide');
+									$("#main-content").load("./page/admin/validation.html");
+								}
 								window.Validate = Validate;
+								window.Refresh = Refresh;
 						
 
 

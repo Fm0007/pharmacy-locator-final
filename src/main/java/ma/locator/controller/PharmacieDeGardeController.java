@@ -147,7 +147,6 @@ public class PharmacieDeGardeController {
 		List<PharmacieDeGarde> pks = repository.findAll();
 		Set<PharmacieDeGarde> result = new HashSet<PharmacieDeGarde>();
 		Pharmacie ph = repository1.findById(Integer.parseInt(id));
-		Date date = new Date();
 		for(PharmacieDeGarde p : pks) {
 			if(p.getPharmacie()==ph ) {
 				result.add(p);

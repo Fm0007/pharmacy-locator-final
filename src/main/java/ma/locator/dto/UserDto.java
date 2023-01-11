@@ -15,13 +15,13 @@ import javax.validation.constraints.NotEmpty;
 public class UserDto {
     private Long id;
 
-    @NotEmpty(message = "Please enter valid name.")
+    @NotEmpty(message = "Veuillez entrer un nom valide.")
     private String name;
 
-    @NotEmpty(message = "Please enter valid email.")
+    @NotEmpty(message = "Veuillez entrer un email valide.")
     @Email
     private String email;
 
-    @NotEmpty(message = "Please enter valid password.")
+    @NotEmpty(message = "veuillez entrer un mot de passe valable.")
     private String password;
 }

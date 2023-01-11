@@ -64,8 +64,13 @@ $(document)
 													garde : {
 														idGarde : garde.val()
 													},
-													
-														dateDebut : dateDebut.val()
+													pharmacieDeGardePK : {
+														dateDebut : dateDebut.val(),
+														gardePK : garde.val(),
+														pharmaciePK : idd
+
+													}
+														
 													  
 													
 													

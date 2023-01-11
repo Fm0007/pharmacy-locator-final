@@ -31,7 +31,7 @@ public class ImageController {
     @PostMapping("/upload/image/{id}")
     public ResponseEntity<ImageUploadResponse> uplaodImage(@PathVariable("id") String id,@RequestParam("image") MultipartFile file)
             throws IOException {
-        Pharmacie ph = repository.getById(Integer.parseInt(id));
+        Pharmacie ph = repository.findById(Integer.parseInt(id));
         Image im = Image.builder()
         .name(file.getOriginalFilename())
         .type(file.getContentType())
@@ -69,7 +69,7 @@ public class ImageController {
         List<Image> im = imageRepository.findAll();
         Image r = new Image();
         for(Image i : im){
-          if(i.getPharmacie()==repository.getById(Integer.parseInt(id))) 
+          if(i.getPharmacie()==repository.findById(Integer.parseInt(id)))
            r = i;       
         }
 

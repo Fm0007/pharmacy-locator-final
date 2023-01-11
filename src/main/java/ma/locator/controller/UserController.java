@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import ma.locator.model.Pharmacie;
 import ma.locator.model.User;
-import ma.locator.repository.PharmacieRepository;
 import ma.locator.repository.UserRepository;
 
 @Controller
@@ -16,8 +15,7 @@ import ma.locator.repository.UserRepository;
 public class UserController {
     @Autowired
 	private UserRepository repository;
-    @Autowired
-    private PharmacieRepository phrep;
+   
 
     @GetMapping("/")
     public String registrationForm() {

@@ -1,29 +1,20 @@
 $(document).ready(function(){
 	var mail = $("#user-name").text();
-	
+	// image par defaut
 	var urlsec = "./get/image/Beige%20And%20Blue%20Hospital%20Design%20Logow.png";
 	$.ajax({
 		url:'/pharmacies/'+mail,
 		type:'GET',
 		success : function(data) {	
-			var urlt ='./get/imagep/'+data.id ;
+			var urlt = '';
+			var url = './get/imagep/'+data.id ;
 			var idd = data.id;
 			$("#ident").val(data.id);
-				$.ajax({
-					url: urlt,
-					type:'GET',
-					success : function(data) {	
-
-					},
-					error : function(jqXHR, textStatus,
-						errorThrown) {
-						console.log(textStatus);
-						urlt="./get/image/Beige%20And%20Blue%20Hospital%20Design%20Logow.png";
-							}
-				});
+				
 				var option2;
+			
 			var option = '<div class="row align-items-center no-gutters">'
-					+'<div class="col"><img width="300" height="300" src="'+urlt+'" style="margin-left: 5px;"></div>'
+					+'<div class="col"><img id="imager" width="300" height="300" src="" style="margin-left: 5px;"></div>'
 				+'</div>'
 				+'<p style="margin-top: 10px;"> '+data.nom+' </p>'
 				+'<p> Adresse :&nbsp; '+data.adresse+'</p>'
@@ -128,7 +119,18 @@ $(document).ready(function(){
 							
 								}
 					});
-					
+					$.ajax({
+						url: url,
+						type:'GET',
+						success : function(data) {	
+							$('#imager').attr('src',url);
+						},
+						error : function(jqXHR, textStatus,
+							errorThrown) {
+							console.log(textStatus);
+							$('#imager').attr('src',urlsec);
+								}
+					});	
 
 		}
 									,

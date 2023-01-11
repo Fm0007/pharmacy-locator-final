@@ -42,7 +42,7 @@ public class LoginController {
 
         if (existingUser != null)
             result.rejectValue("email", null,
-                    "User already registered !!!");
+                    "Email déja utilisé");
 
         if (result.hasErrors()) {
             model.addAttribute("user", userDto);

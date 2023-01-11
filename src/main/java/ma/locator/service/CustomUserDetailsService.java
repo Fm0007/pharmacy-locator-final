@@ -30,7 +30,7 @@ public class CustomUserDetailsService implements UserDetailsService {
                             .map((role) -> new SimpleGrantedAuthority(role.getName()))
                             .collect(Collectors.toList()));
         } else {
-            throw new UsernameNotFoundException("Invalid email or password");
+            throw new UsernameNotFoundException("Email et mot de passe incorrecte");
         }
     }
 }
