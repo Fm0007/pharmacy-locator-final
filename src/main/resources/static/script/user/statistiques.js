@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	var mail = $("#user-name").text();
 	// image par defaut
-	var urlsec = "./get/image/Beige%20And%20Blue%20Hospital%20Design%20Logow.png";
+	var urlsec = "https://i.ibb.co/b6m8d08/Beige-And-Blue-Hospital-Design-Logow.png";
 	$.ajax({
 		url:'/pharmacies/'+mail,
 		type:'GET',
