@@ -55,7 +55,7 @@
 									$("#ville").val(data.zone.ville.id),
 									$("#zone").val(data.zone.id),
 									$("#lat").val(data.lat),
-									$("#log").val(data.log)/*,
+									$("#log").val(data.log),
 										
 									L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
 									attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -92,7 +92,7 @@
 												log.value = markers.getLatLng().lng;
 
 											});
-*/
+
 									
 															},
 								error : function(jqXHR, textStatus,
